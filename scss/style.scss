@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+$background-color-1: RGB(245, 255, 240);
+
+$header-color-1: RGB(30, 30, 30);
+
+$header-font-1: 'Roboto Condensed', sans-serif;
+$header-font-2: 'Open Sans', sans-serif;
+
+$paragraph-font-1: 'Roboto Mono', monospace;
+$paragraph-font-3: 'Roboto', sans-serif;
+
+$box-shadow-1: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+$container-color-1: RGB(232, 236, 236);
+
+body {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;
+    background-color: $background-color-1
+}
+
+.header {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, 1fr);
+    grid-row: 1/2;
+    background-color: $header-color-1;
+    width: 100vw;
+    color: white;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
+
+    h1 {
+        font-family: $header-font-1;
+        grid-row: 1/2;
+    }
+}
+
+.header-text {
+    font-family: $paragraph-font-3;
+        grid-row: 2/3;
+}
+
+.programming-language-icon {
+    margin-bottom: 10px;
+    height: 160px;
+    width: 160px;
+    transform: scale(0.8);
+    float: left;
+
+}
+
+.card-text {
+    font-family: $paragraph-font-1;
+}
+
+.content {
+    width: 100vw;
+    grid-row: 2/3;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 50px;
+    grid-template-rows: repeat(5, 500px);
+    justify-content: center;
+
+    @for $i from 1 through 5 {
+        .container-#{$i} {
+            width: 90vw;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 20px;
+            grid-template-rows: auto;
+            background-color: $container-color-1;
+            height: 500px;
+            grid-row-start: 0 + $i;
+            grid-row-end: 1 + $i;
+            border-radius: 5px;
+            padding: 20px;
+
+            @for $j from 1 through 3 {
+                .card-#{$j} {
+                    width: 1fr;
+                    max-height: 460px;
+                    grid-column-start: 0 + $j;
+                    grid-column-end: 1 + $j;
+                    padding: 20px;
+                    background-color: white;
+                    box-shadow: $box-shadow-1;
+                    border-radius: 5px;
+
+                    h2 {
+                        font-family: $header-font-2;
+                        margin-bottom: 10px;
+                        text-align: center;
+                    }
+
+                    p {
+                        font-size: 16px;
+                        line-height: 1.5;
+                    }
+
+                    .list-group {
+                        margin-bottom: 10px;
+                    }
+
+                    @for $k from 1 through 4 {
+                        .component-#{$k} {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.img-resize {
+    float: left;
+    height: 120px;
+}
+
+.footer {
+    @extend .header;
+    grid-row: 3/4 !important;
+    margin-top: 50px;
+    margin-bottom: 0px;
+
+    .button {
+        grid-row: 1/2;
+    }
+}
+
+@media screen and (max-width: 1570px) and (min-width: 1371px) {
+    .card-text {
+        font-size: 14px !important;
+    }
+}
+
+@media screen and (max-width: 1371px) and (min-width: 1290px) {
+    .card-text{
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (max-width: 1290px) and (min-width: 1150px) {
+    .card-text {
+        font-size: 12px !important;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+
+    .programming-language-icon {
+        transform: scale(0.9);
+
+    }
+
+    .content {
+
+        grid-template-rows: repeat(5, 1320px);
+
+        @for $i from 1 through 5 {
+            .container-#{$i} {
+                row-gap: 20px;
+                column-gap: 0px;
+                grid-template-rows: repeat(3, 1fr);
+                height: 1320px;
+
+                @for $j from 1 through 3 {
+                    .card-#{$j} {
+                        max-height: 420px;
+                        grid-row-start: 0 + $j;
+                        grid-row-end: 1 + $j;
+                        grid-column: 1/4;
+                        width: 1fr;
+                        display: grid;
+                        grid-template-rows: 1fr 3fr;
+                        grid-template-columns: repeat(3, 1fr);
+
+                        h2 {
+                            font-family: $header-font-2;
+                            margin-bottom: 10px;
+                            text-align: center;
+                            grid-row: 1/2 !important;
+                            grid-column: 1/4;
+                        }
+
+                        .list-group {
+                            margin-right: 10px;
+                        }
+
+                        @for $k from 1 through 4 {
+                            .component-#{$k} {
+                                grid-row: 2/3;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
